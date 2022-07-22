@@ -1,18 +1,18 @@
 import {createStore} from "redux"
 
-function increment() {
+export function increment() {
     return {
         type: "INCREMENT"
     }
 }
 
-function decrement() {
+export function decrement() {
     return {
         type: "DECREMENT"
     }
 }
 
-function reducer(count = 0, action) {
+export function reducer(count = 0, action) {
     switch(action.type) {
         case "INCREMENT":
             return count + 1

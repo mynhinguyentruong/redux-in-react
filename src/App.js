@@ -1,5 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
+import {increment, decrement} from './redux'
 
 // connect is Higher Order Component
 // takes 2 arguments
@@ -14,8 +15,8 @@ function App(props) {
     return (
         <div>
             <h1>{props.bananas}</h1>
-            <button>-</button>
-            <button>+</button>
+            <button onClick={props.apples}>-</button>
+            <button onClick={props.oranges}>+</button>
         </div>
     )
 }
@@ -31,4 +32,9 @@ function mapStateToProps(globalState) {
     }
 }
 
-export default connect(mapStateToProps, {})(App)
+const mapDispatchToProps = {
+    oranges: increment,
+    apples: decrement
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
