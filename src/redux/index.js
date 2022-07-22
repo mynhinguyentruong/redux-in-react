@@ -1,8 +1,12 @@
-import {createStore} from "redux"
+import {createStore, applyMiddleware} from "redux"
+import thunk from "redux-thunk"
 
 export function increment() {
-    return {
-        type: "INCREMENT"
+    //simulate async by using setTimeOut
+    return (dispatch) => {
+        setTimeout(() => {
+            dispatch({type: "INCREMENT"})
+        }, 2000)
     }
 }
 
@@ -24,7 +28,7 @@ export function reducer(count = 0, action) {
 }
 
 
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(thunk))
 console.log(store)
 store.subscribe(() => console.log(store.getState()))
 export default store
