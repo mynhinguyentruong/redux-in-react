@@ -1,5 +1,5 @@
 import React from "react"
-import {connect} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
 import {increment, decrement} from './redux'
 
 // connect is Higher Order Component
@@ -11,30 +11,36 @@ import {increment, decrement} from './redux'
 
 // connect(mapStateToPropsFunc, mapDispatchToPropsObject)
 
-function App(props) {    
+function App() {  
+    
+    const count = useSelector(state => state)
+    const dispatch = useDispatch()
+    
     return (
         <div>
-            <h1>{props.bananas}</h1>
-            <button onClick={props.apples}>-</button>
-            <button onClick={props.oranges}>+</button>
+            <h1>{count}</h1>
+            <button onClick={() => dispatch(decrement())}>-</button>
+            <button onClick={() => dispatch(increment())}>+</button>
         </div>
     )
 }
 
-function mapStateToProps(globalState) {
-    // return an object where the keys 
-    // are the name of the props your component want
-    // and the value are the actual parts
-    // of global state that your component want
+// function mapStateToProps(globalState) {
+//     // return an object where the keys 
+//     // are the name of the props your component want
+//     // and the value are the actual parts
+//     // of global state that your component want
 
-    return {
-        bananas: globalState
-    }
-}
+//     return {
+//         bananas: globalState
+//     }
+// }
 
-const mapDispatchToProps = {
-    oranges: increment,
-    apples: decrement
-}
+// const mapDispatchToProps = {
+//     oranges: increment,
+//     apples: decrement
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+// export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+export default App
